@@ -1,0 +1,422 @@
+
+<div id="wox-fit">
+<style>
+#wox-fit{--o:#ff7626;--bg:#0d0f12;--card:#191c22;--line:#30343d;background:var(--bg);color:#f6f6f6;font:15px Arial,sans-serif;line-height:1.5;border-radius:12px;overflow:hidden}
+#wox-fit *{box-sizing:border-box}
+#wox-fit button,#wox-fit input,#wox-fit select,#wox-fit textarea{font:inherit}
+#wox-fit button{cursor:pointer}
+#wox-fit .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:#070809;padding:17px 5%;border-bottom:1px solid var(--line)}
+#wox-fit .logo{font-size:27px;font-weight:1000;letter-spacing:2px}
+#wox-fit .logo span,#wox-fit h1 span{color:var(--o)}
+#wox-fit .btn{border:0;border-radius:7px;padding:11px 14px;font-weight:bold}
+#wox-fit .primary{background:var(--o);color:#111}
+#wox-fit .darkbtn{background:#282c34;color:white;border:1px solid #424752}
+#wox-fit .hero{padding:45px 6%;background:radial-gradient(ellipse at 85% 20%,#54301b,transparent 40%),linear-gradient(120deg,#1b1e24,#090a0c)}
+#wox-fit .tag{color:var(--o);font-weight:bold;letter-spacing:3px;font-size:12px}
+#wox-fit h1{font-size:clamp(38px,7vw,67px);line-height:1.04;margin:12px 0}
+#wox-fit p{color:#b9bec7}
+#wox-fit .section{padding:30px 5%;scroll-margin-top:15px}
+#wox-fit h2{margin:0 0 5px;font-size:25px}
+#wox-fit .muted{color:#aeb4bf;font-size:12px}
+#wox-fit .tools{display:flex;gap:9px;margin:18px 0;flex-wrap:wrap}
+#wox-fit input,#wox-fit select,#wox-fit textarea{width:100%;min-width:0;padding:11px;background:#101216;color:white;border:1px solid #3b414b;border-radius:7px}
+#wox-fit option{background:#191c22;color:white}
+#wox-fit .tools input{flex:1;min-width:150px}
+#wox-fit .cats{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+#wox-fit .cat{background:#252932;color:white;border:1px solid #3a404a;padding:9px 13px;border-radius:22px}
+#wox-fit .cat.active{background:var(--o);color:#111;border-color:var(--o)}
+#wox-fit .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+#wox-fit .product{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+#wox-fit .product img{width:100%;height:190px;object-fit:cover;display:block;background:#252932}
+#wox-fit .body{padding:12px}
+#wox-fit .product h3{font-size:15px;margin:4px 0}
+#wox-fit .price{font-size:17px;color:var(--o);font-weight:bold}
+#wox-fit .options{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0}
+#wox-fit .options label,#wox-fit .field label{display:block;font-size:12px;margin-bottom:5px}
+#wox-fit .options select{padding:8px;font-size:12px}
+#wox-fit .product .btn{width:100%;padding:10px 5px;font-size:12px}
+#wox-fit .layout{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+#wox-fit .box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:17px;min-width:0}
+#wox-fit .item{display:grid;grid-template-columns:65px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+#wox-fit .item img{width:65px;height:76px;object-fit:cover;border-radius:6px}
+#wox-fit .item h4{font-size:13px;margin:0 0 4px}
+#wox-fit .qty{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:7px}
+#wox-fit .qty button{background:#303641;color:white;border:0;border-radius:5px;padding:5px 10px}
+#wox-fit .qty .remove{color:#ff8a76}
+#wox-fit .totalrow{display:flex;justify-content:space-between;gap:8px;margin:12px 0;font-size:14px}
+#wox-fit .grand{border-top:1px solid var(--line);padding-top:12px;font-weight:bold;font-size:18px}
+#wox-fit .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#wox-fit .field{margin-bottom:12px;min-width:0}
+#wox-fit .full{grid-column:1/-1}
+#wox-fit .empty{text-align:center;color:#aeb4bf;padding:28px 10px}
+#wox-fit .footer{text-align:center;background:#070809;padding:23px;color:#aaa;font-size:12px}
+#wox-fit .notice{padding:12px;background:#242831;border-radius:7px;font-size:12px;color:#c6cad1;margin:15px 0}
+#wox-fit .checkoutbtn{width:100%;padding:15px;font-size:15px}
+@media(max-width:760px){#wox-fit .grid{grid-template-columns:repeat(2,minmax(0,1fr))}#wox-fit .layout{grid-template-columns:1fr}#wox-fit .product img{height:170px}}
+@media(max-width:390px){#wox-fit .grid{grid-template-columns:1fr}#wox-fit .product img{height:230px}#wox-fit .fields{grid-template-columns:1fr}#wox-fit .full{grid-column:auto}}
+</style>
+
+<header class="top">
+  <div class="logo">WOX<span>FIT.</span></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button type="button" class="btn darkbtn" data-go="products">Katalog</button>
+    <button type="button" class="btn darkbtn" data-go="cart">🛒 Keranjang (<span id="count">0</span>)</button>
+    <button type="button" class="btn primary" data-go="checkout">Checkout</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="tag">YOUR STYLE • YOUR MOVE</div>
+  <h1>FIND YOUR<br><span>OWN STYLE.</span></h1>
+  <p>Temukan koleksi fashion kasual, sporty, dan streetwear favoritmu di WOX FIT.</p>
+  <button type="button" class="btn primary" data-go="products">Belanja Sekarang →</button>
+</section>
+
+<section class="section" id="products">
+  <h2>KOLEKSI PRODUK</h2>
+  <div class="muted">Banyak pilihan, harga terjangkau, belanja lebih mudah.</div>
+  <div class="tools">
+    <input id="search" placeholder="🔎 Cari nama produk..." type="search">
+    <select id="sort" style="max-width:175px">
+      <option value="default">Urutan standar</option>
+      <option value="low">Harga termurah</option>
+      <option value="high">Harga termahal</option>
+    </select>
+  </div>
+  <div class="cats">
+    <button type="button" class="cat active" data-category="Semua">Semua</button>
+    <button type="button" class="cat" data-category="Baju Pendek">👕 Baju Pendek</button>
+    <button type="button" class="cat" data-category="Baju Panjang">🧥 Baju Panjang</button>
+    <button type="button" class="cat" data-category="Celana">👖 Celana</button>
+    <button type="button" class="cat" data-category="Aksesoris">🧢 Aksesoris</button>
+  </div>
+  <div class="grid" id="list"></div>
+</section>
+
+<section class="section" id="cart">
+  <h2>🛒 KERANJANG SAYA</h2>
+  <p class="muted">Tambah atau kurangi jumlah produk, atau hapus barang yang tidak jadi dibeli.</p>
+  <div class="layout">
+    <div class="box" id="cart-list"></div>
+    <div class="box">
+      <h3 style="margin-top:0">Ringkasan belanja</h3>
+      <div class="totalrow"><span>Jumlah barang</span><b id="items">0</b></div>
+      <div class="totalrow"><span>Subtotal</span><b id="subtotal">Rp0</b></div>
+      <div class="totalrow"><span>Ongkir</span><b id="shipping">Rp0</b></div>
+      <div class="totalrow grand"><span>Total</span><span id="total">Rp0</span></div>
+      <button type="button" class="btn primary checkoutbtn" data-go="checkout">Lanjut Checkout →</button>
+      <button type="button" class="btn darkbtn checkoutbtn" id="clear" style="margin-top:8px">Kosongkan Keranjang</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="checkout">
+  <h2>DATA PEMESANAN</h2>
+  <p class="muted">Lengkapi formulir untuk mengirim rincian pesanan ke WhatsApp penjual.</p>
+  <div class="box">
+    <form id="order-form">
+      <div class="fields">
+        <div class="field">
+          <label for="name">Nama lengkap *</label>
+          <input id="name" required maxlength="100" placeholder="Nama pemesan">
+        </div>
+        <div class="field">
+          <label for="phone">Nomor HP / WhatsApp *</label>
+          <input id="phone" type="tel" required maxlength="20" placeholder="081234567890">
+        </div>
+        <div class="field">
+          <label for="method">Metode penerimaan *</label>
+          <select id="method">
+            <option value="delivery">Diantar ke alamat</option>
+            <option value="pickup">Ambil sendiri</option>
+          </select>
+        </div>
+        <div class="field" id="zone-field">
+          <label for="zone">Zona ongkir *</label>
+          <select id="zone">
+            <option value="5000">Dekat — Rp5.000</option>
+            <option value="10000">Sedang — Rp10.000</option>
+            <option value="15000">Jauh — Rp15.000</option>
+          </select>
+        </div>
+        <div class="field full" id="address-field">
+          <label for="address">Alamat lengkap *</label>
+          <textarea id="address" required rows="3" placeholder="Jalan, nomor rumah, RT/RW, kelurahan, kecamatan, kota, kode pos"></textarea>
+        </div>
+        <div class="field full">
+          <label for="note">Catatan pesanan</label>
+          <textarea id="note" rows="3" placeholder="Catatan ukuran, warna, atau instruksi pengantaran"></textarea>
+        </div>
+      </div>
+
+      <div class="notice">Rincian pesanan akan disiapkan di WhatsApp. Tekan tombol Kirim di WhatsApp agar pesanan masuk ke penjual.</div>
+      <div class="totalrow"><span>Subtotal</span><b id="sub-check">Rp0</b></div>
+      <div class="totalrow"><span>Ongkir</span><b id="ship-check">Rp0</b></div>
+      <div class="totalrow grand"><span>Total pesanan</span><span id="grand-check">Rp0</span></div>
+      <button type="submit" class="btn primary checkoutbtn">💬 Pesan Sekarang via WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">© 2026 WOX FIT — YOUR STYLE, YOUR MOVE.</footer>
+
+<script>
+(function(){
+  const root=document.getElementById('wox-fit');
+  if(!root || root.dataset.initialized==='yes') return;
+  root.dataset.initialized='yes';
+
+  const $=id=>root.querySelector('#'+id);
+
+  // NOMOR WHATSAPP KAMU
+  const WA_NUMBER='6285261467032';
+
+  const products=[
+    {id:1,n:'Basic White Tee',c:'Baju Pendek',p:65000,i:'photo-1521572163474-6864f9cf17ab'},
+    {id:2,n:'Oversize Black Tee',c:'Baju Pendek',p:85000,i:'photo-1503341504253-dff4815485f1'},
+    {id:3,n:'Graphic Street Tee',c:'Baju Pendek',p:95000,i:'photo-1523398002811-999ca8dec234'},
+    {id:4,n:'Sport Dry Fit',c:'Baju Pendek',p:75000,i:'photo-1576566588028-4147f3842f27'},
+    {id:5,n:'Classic Long Sleeve',c:'Baju Panjang',p:110000,i:'photo-1618354691373-d851c5c3a990'},
+    {id:6,n:'Urban Sweatshirt',c:'Baju Panjang',p:155000,i:'photo-1556821840-3a63f95609a7'},
+    {id:7,n:'Hoodie Streetwear',c:'Baju Panjang',p:185000,i:'photo-1556821840-3a63f95609a7'},
+    {id:8,n:'Long Sleeve Basic',c:'Baju Panjang',p:120000,i:'photo-1578681994506-b8f463449011'},
+    {id:9,n:'Cargo Utility Pants',c:'Celana',p:175000,i:'photo-1517438476312-10d79c077509'},
+    {id:10,n:'Classic Chino Pants',c:'Celana',p:145000,i:'photo-1473966968600-fa801b869a1a'},
+    {id:11,n:'Jogger Sport Pants',c:'Celana',p:130000,i:'photo-1552902865-b72c031ac5ea'},
+    {id:12,n:'Straight Denim Jeans',c:'Celana',p:190000,i:'photo-1542272604-787c3835535d'},
+    {id:13,n:'Streetwear Cap',c:'Aksesoris',p:55000,i:'photo-1588850561407-ed78c282e89b'},
+    {id:14,n:'Everyday Backpack',c:'Aksesoris',p:125000,i:'photo-1553062407-98eeb64c6a62'},
+    {id:15,n:'Casual Sling Bag',c:'Aksesoris',p:85000,i:'photo-1548036328-c9fa89d128fa'},
+    {id:16,n:'Sport Socks Set',c:'Aksesoris',p:35000,i:'photo-1586350977771-b3b0abd50c82'},
+    {id:17,n:'Minimalist Belt',c:'Aksesoris',p:45000,i:'photo-1624222247344-550fb8c9b9a3'},
+    {id:18,n:'Classic Sunglasses',c:'Aksesoris',p:65000,i:'photo-1511499767150-a48a237f0083'},
+    {id:19,n:'Zip Track Jacket',c:'Baju Panjang',p:165000,i:'photo-1551488831-00ddcb6c6bd3'},
+    {id:20,n:'Relaxed Fit Pants',c:'Celana',p:155000,i:'photo-1515886657613-9f3515b0c78f'}
+  ];
+
+  let category='Semua',cart=[];
+  const money=n=>'Rp'+Math.round(n).toLocaleString('id-ID');
+  const img=p=>'https://images.unsplash.com/'+p.i+'?auto=format&fit=crop&w=600&q=80';
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  function renderProducts(){
+    const q=$('search').value.toLowerCase().trim();
+    let a=products.filter(p=>(category==='Semua'||p.c===category)&&(p.n+' '+p.c).toLowerCase().includes(q));
+    if($('sort').value==='low')a.sort((x,y)=>x.p-y.p);
+    if($('sort').value==='high')a.sort((x,y)=>y.p-x.p);
+
+    $('list').innerHTML=a.length?a.map(p=>`
+      <article class="product">
+        <img src="${img(p)}" alt="${esc(p.n)}" loading="lazy"
+        onerror="this.onerror=null;this.src='https://placehold.co/500x400/20242b/ffffff?text=WOX+FIT'">
+        <div class="body">
+          <div class="muted">${esc(p.c)}</div>
+          <h3>${esc(p.n)}</h3>
+          <div class="price">${money(p.p)}</div>
+          <div class="options">
+            <div>
+              <label for="size-${p.id}">Ukuran</label>
+              <select id="size-${p.id}">
+                ${(p.c==='Aksesoris'?['All Size']:['S','M','L','XL','XXL']).map(x=>`<option>${x}</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label for="color-${p.id}">Warna</label>
+              <select id="color-${p.id}">
+                ${['Hitam','Putih','Abu-abu','Navy'].map(x=>`<option>${x}</option>`).join('')}
+              </select>
+            </div>
+          </div>
+          <button type="button" class="btn primary" data-add="${p.id}">＋ Tambah ke Keranjang</button>
+        </div>
+      </article>`).join(''):'<div class="empty">Produk tidak ditemukan.</div>';
+  }
+
+  function subtotal(){
+    return cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).p*x.qty,0);
+  }
+
+  function count(){
+    return cart.reduce((s,x)=>s+x.qty,0);
+  }
+
+  function ship(){
+    return $('method').value==='pickup'?0:Number($('zone').value);
+  }
+
+  function updateTotals(){
+    const sub=subtotal(),shipping=ship();
+    $('count').textContent=count();
+    $('items').textContent=count()+' barang';
+    $('subtotal').textContent=money(sub);
+    $('shipping').textContent=money(shipping);
+    $('total').textContent=money(sub+shipping);
+    $('sub-check').textContent=money(sub);
+    $('ship-check').textContent=money(shipping);
+    $('grand-check').textContent=money(sub+shipping);
+  }
+
+  function renderCart(){
+    $('cart-list').innerHTML=cart.length?cart.map(x=>{
+      const p=products.find(z=>z.id===x.id);
+      return `<div class="item">
+        <img src="${img(p)}" alt="${esc(p.n)}"
+        onerror="this.onerror=null;this.src='https://placehold.co/100x100/20242b/ffffff?text=WOX'">
+        <div>
+          <h4>${esc(p.n)}</h4>
+          <div class="muted">${esc(x.size)} · ${esc(x.color)}</div>
+          <b class="price">${money(p.p*x.qty)}</b>
+          <div class="qty">
+            <button type="button" data-delta="-1" data-key="${esc(x.key)}">−</button>
+            <b>${x.qty}</b>
+            <button type="button" data-delta="1" data-key="${esc(x.key)}">+</button>
+            <button type="button" class="remove" data-remove="${esc(x.key)}">Hapus</button>
+          </div>
+        </div>
+      </div>`;
+    }).join(''):`<div class="empty"><h3>Keranjang masih kosong 🛍️</h3>
+      <p>Pilih produk favoritmu di katalog.</p>
+      <button type="button" class="btn primary" data-go="products">Lihat Produk</button></div>`;
+    updateTotals();
+  }
+
+  root.addEventListener('click',e=>{
+    const go=e.target.closest('[data-go]');
+    if(go){
+      const target=$(go.dataset.go);
+      if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+      return;
+    }
+
+    const cat=e.target.closest('[data-category]');
+    if(cat){
+      category=cat.dataset.category;
+      root.querySelectorAll('.cat').forEach(b=>b.classList.toggle('active',b===cat));
+      renderProducts();
+      return;
+    }
+
+    const add=e.target.closest('[data-add]');
+    if(add){
+      const id=Number(add.dataset.add);
+      const size=$('size-'+id).value,color=$('color-'+id).value;
+      const key=[id,size,color].join('|');
+      const old=cart.find(x=>x.key===key);
+      if(old)old.qty++;
+      else cart.push({id,size,color,key,qty:1});
+      renderCart();
+      add.textContent='✓ Berhasil Ditambahkan';
+      setTimeout(()=>{if(add.isConnected)add.textContent='＋ Tambah ke Keranjang'},1200);
+      return;
+    }
+
+    const delta=e.target.closest('[data-delta]');
+    if(delta){
+      const item=cart.find(x=>x.key===delta.dataset.key);
+      if(item){
+        item.qty+=Number(delta.dataset.delta);
+        if(item.qty<=0)cart=cart.filter(x=>x!==item);
+      }
+      renderCart();
+      return;
+    }
+
+    const remove=e.target.closest('[data-remove]');
+    if(remove){
+      cart=cart.filter(x=>x.key!==remove.dataset.remove);
+      renderCart();
+      return;
+    }
+
+    if(e.target.closest('#clear')){
+      if(!cart.length){alert('Keranjang sudah kosong.');return;}
+      if(confirm('Hapus semua produk dari keranjang?')){
+        cart=[];
+        renderCart();
+      }
+    }
+  });
+
+  $('search').addEventListener('input',renderProducts);
+  $('sort').addEventListener('change',renderProducts);
+
+  $('method').addEventListener('change',()=>{
+    const pickup=$('method').value==='pickup';
+    $('zone-field').style.display=pickup?'none':'block';
+    $('address-field').style.display=pickup?'none':'block';
+    $('address').required=!pickup;
+    updateTotals();
+  });
+
+  $('zone').addEventListener('change',updateTotals);
+
+  $('order-form').addEventListener('submit',e=>{
+    e.preventDefault();
+
+    if(!cart.length){
+      alert('Keranjang masih kosong. Silakan pilih produk terlebih dahulu.');
+      $('products').scrollIntoView({behavior:'smooth'});
+      return;
+    }
+
+    const name=$('name').value.trim();
+    const phone=$('phone').value.trim();
+    const method=$('method').value;
+    const address=$('address').value.trim();
+    const note=$('note').value.trim();
+
+    if(!/^[0-9+\-()\s]{8,20}$/.test(phone)){
+      alert('Nomor HP tidak valid. Periksa kembali.');
+      $('phone').focus();
+      return;
+    }
+
+    if(method==='delivery'&&!address){
+      alert('Alamat lengkap wajib diisi.');
+      $('address').focus();
+      return;
+    }
+
+    const detail=cart.map((x,i)=>{
+      const p=products.find(z=>z.id===x.id);
+      return `${i+1}. ${p.n}\nUkuran: ${x.size}, Warna: ${x.color}\n${x.qty} x ${money(p.p)} = ${money(p.p*x.qty)}`;
+    }).join('\n\n');
+
+    const message=[
+      '🛍️ *PESANAN WOX FIT*',
+      '====================',
+      '*DATA PEMESAN*',
+      'Nama: '+name,
+      'Nomor HP: '+phone,
+      '',
+      '*DAFTAR BELANJA*',
+      detail,
+      '',
+      '*RINGKASAN*',
+      'Jumlah barang: '+count(),
+      'Subtotal: '+money(subtotal()),
+      'Metode penerimaan: '+(method==='delivery'?'Diantar ke alamat':'Ambil sendiri'),
+      ...(method==='delivery'?[
+        'Zona ongkir: '+$('zone').selectedOptions[0].textContent,
+        'Alamat: '+address
+      ]:['Alamat: Ambil sendiri di toko']),
+      'Ongkir: '+money(ship()),
+      '*TOTAL PESANAN: '+money(subtotal()+ship())+'*',
+      'Catatan: '+(note||'-'),
+      '',
+      'Mohon konfirmasi pesanan ini. Terima kasih.'
+    ].join('\n');
+
+    // Membuka chat WhatsApp NOMOR KAMU dengan rincian pesanan
+    const url='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(message);
+    const win=window.open(url,'_blank');
+
+    // Cadangan jika browser memblokir tab baru
+    if(!win)window.location.href=url;
+  });
+
+  renderProducts();
+  renderCart();
+})();
+</script>
+    </div>
